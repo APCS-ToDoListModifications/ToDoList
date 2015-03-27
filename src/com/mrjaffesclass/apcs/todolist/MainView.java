@@ -21,7 +21,7 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
   
   private final int DONE_FIELD_WIDTH = 65;
   private final int DESCRIPTION_FIELD_WIDTH = 475;
-  private final int DATE_FIELD_WIDTH = 75;
+  private final int DATE_FIELD_WIDTH = 100;
   private final int ROW_HEIGHT = 25;
   
   private final int X_POSITION = 100;
@@ -42,8 +42,8 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
     // Make adjustments to the column widths to suit our needs
     // Remove the ID column and set the row height
     jTable1.getColumnModel().getColumn(DONE_FIELD).setPreferredWidth(DONE_FIELD_WIDTH);  // Set width of checkbox column
-    jTable1.getColumnModel().getColumn(DESCRIPTION_FIELD).setPreferredWidth(DESCRIPTION_FIELD_WIDTH);  // Set width of checkbox column
-    jTable1.getColumnModel().getColumn(DATE_FIELD).setPreferredWidth(DATE_FIELD_WIDTH);
+    jTable1.getColumnModel().getColumn(DESCRIPTION_FIELD).setPreferredWidth(DESCRIPTION_FIELD_WIDTH);  // Set width of description column
+    jTable1.getColumnModel().getColumn(DATE_FIELD).setPreferredWidth(DATE_FIELD_WIDTH);  // Set width of date column
     jTable1.removeColumn(jTable1.getColumnModel().getColumn(ID_FIELD));  // Remove the ID column from the table
     jTable1.setRowHeight(ROW_HEIGHT);
   }
@@ -81,7 +81,7 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
 
   /**
    * Loads the to do list into the tableModel to display in the table
-   * If we put the to do list's data in the table model the view will
+   * If we put the to do lists data in the table model the view will
    * paint the table with the table model's data.
    * @param tableModel  TableModel for the jTable
    * @param list        To do list of items
@@ -91,7 +91,6 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
     // set the tableModel with this size
     int size = list.size();
     tableModel.setRowCount(size);
-    
     // Look through the to do list and save the to do item fields
     // in the table model.  The table model will see the changes
     // and cause the table to repaint with the new data
@@ -100,7 +99,7 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
       tableModel.setValueAt(item.getId(), i, ID_FIELD);
       tableModel.setValueAt(item.isDone(), i, DONE_FIELD);
       tableModel.setValueAt(item.getDescription(), i, DESCRIPTION_FIELD);
-      tableModel.setValueAt(item.getDate().toString(), i, DATE_FIELD);
+      tableModel.setValueAt(item.getDate(), i, DATE_FIELD);
     }
 }
   
@@ -250,7 +249,8 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
   }//GEN-LAST:event_jTable1MouseClicked
 
   private void newItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newItemBtnActionPerformed
-    ToDoItem item = new ToDoItem(-1, "New to do item", false, new Date());
+    Date date = new Date();
+    ToDoItem item = new ToDoItem(-1, "New to do item", false, date);
     editItem(item);
   }//GEN-LAST:event_newItemBtnActionPerformed
 
