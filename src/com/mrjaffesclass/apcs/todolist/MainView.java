@@ -15,11 +15,13 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
   private final int ID_FIELD = 0;
   private final int DONE_FIELD = 1;
   private final int DESCRIPTION_FIELD = 2;
+  private final int DATE_FIELD = 3;
   
   private final int DONE_COLUMN = 0;
   
   private final int DONE_FIELD_WIDTH = 65;
   private final int DESCRIPTION_FIELD_WIDTH = 475;
+  private final int DATE_FIELD_WIDTH = 75;
   private final int ROW_HEIGHT = 25;
   
   private final int X_POSITION = 100;
@@ -41,6 +43,7 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
     // Remove the ID column and set the row height
     jTable1.getColumnModel().getColumn(DONE_FIELD).setPreferredWidth(DONE_FIELD_WIDTH);  // Set width of checkbox column
     jTable1.getColumnModel().getColumn(DESCRIPTION_FIELD).setPreferredWidth(DESCRIPTION_FIELD_WIDTH);  // Set width of checkbox column
+    jTable1.getColumnModel().getColumn(DATE_FIELD).setPreferredWidth(DATE_FIELD_WIDTH);
     jTable1.removeColumn(jTable1.getColumnModel().getColumn(ID_FIELD));  // Remove the ID column from the table
     jTable1.setRowHeight(ROW_HEIGHT);
   }
@@ -97,6 +100,7 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
       tableModel.setValueAt(item.getId(), i, ID_FIELD);
       tableModel.setValueAt(item.isDone(), i, DONE_FIELD);
       tableModel.setValueAt(item.getDescription(), i, DESCRIPTION_FIELD);
+      tableModel.setValueAt(item.getDate().toString(), i, DATE_FIELD);
     }
 }
   
@@ -130,7 +134,8 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
     ToDoItem item = new ToDoItem(              
       (int)tableModel.getValueAt(row, ID_FIELD),
       (String)tableModel.getValueAt(row, DESCRIPTION_FIELD),
-      (boolean)tableModel.getValueAt(row, DONE_FIELD)
+      (boolean)tableModel.getValueAt(row, DONE_FIELD),
+      (Date)tableModel.getValueAt(row, DATE_FIELD)
     );
     return item;
   }
@@ -161,7 +166,7 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Long.class
+                java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -245,7 +250,7 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
   }//GEN-LAST:event_jTable1MouseClicked
 
   private void newItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newItemBtnActionPerformed
-    ToDoItem item = new ToDoItem(-1, "New to do item", false);
+    ToDoItem item = new ToDoItem(-1, "New to do item", false, new Date());
     editItem(item);
   }//GEN-LAST:event_newItemBtnActionPerformed
 

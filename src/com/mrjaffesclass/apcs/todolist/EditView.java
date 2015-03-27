@@ -55,6 +55,7 @@ public class EditView extends javax.swing.JDialog implements MessageHandler {
   private void setFieldValues() {
     descriptionText.setText(item.getDescription());
     completedCheckBox.setSelected(item.isDone());
+    jXDatePicker1.setDate(null);
   }
   
   /**
@@ -63,6 +64,7 @@ public class EditView extends javax.swing.JDialog implements MessageHandler {
   private void getValues() {
     item.setDescription(descriptionText.getText());
     item.setDone(completedCheckBox.isSelected());
+    item.setDate(jXDatePicker1.getDate());
   }
   
   /**

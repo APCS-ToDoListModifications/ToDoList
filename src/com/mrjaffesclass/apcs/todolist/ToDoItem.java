@@ -1,4 +1,7 @@
 package com.mrjaffesclass.apcs.todolist;
+
+import java.util.Date;
+
 /**
  * To do item
  * 
@@ -15,7 +18,7 @@ public class ToDoItem {
   private int id;               
   private String description;
   private boolean done;
-  
+  private Date date;
   /**
    * Constructor with done set to false in constructor
    * @param _id           ID number of to do item
@@ -36,6 +39,20 @@ public class ToDoItem {
   public ToDoItem(int _id, String _description, boolean _done) {
     description = _description;
     id = _id;
+    done = _done;     // Default to not completed
+  }
+  
+  /**
+   * Constructor
+   * @param _id           ID number of to do item
+   * @param _description  Description of to do item
+   * @param _done         Done flag
+   * @param _date         Due date of the to do item
+   */
+  public ToDoItem(int _id, String _description, boolean _done, Date _date) {
+    description = _description;
+    id = _id;
+    date = _date;
     done = _done;     // Default to not completed
   }
 
@@ -95,12 +112,29 @@ public class ToDoItem {
   }
   
   /**
+   * Get the to do item due date
+   * @return Due date of the to do item
+   */
+  public Date getDate() {
+    return date;
+  }
+  
+  /**
+   * Sets the ID of the to do item. Can only be called from inside this class
+   * @param date Due date value to set
+   */
+  public void setDate(Date date) {
+    this.date = date;
+  }
+  
+  /**
    * Transfer the description and done flag of another to do item into this one
    * @param anotherItem Item whose data values we are copying
    */
   public void merge(ToDoItem anotherItem) {
     this.setDescription(anotherItem.getDescription());
-    this.setDone(anotherItem.isDone());    
+    this.setDone(anotherItem.isDone());
+    this.setDate(anotherItem.getDate());
   }
 
 }
