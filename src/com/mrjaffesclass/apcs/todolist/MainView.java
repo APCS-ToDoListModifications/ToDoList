@@ -1,7 +1,6 @@
 package com.mrjaffesclass.apcs.todolist;
 
 import java.util.*;
-import java.text.*;
 import javax.swing.table.*;
 import com.mrjaffesclass.apcs.messenger.*;
 /**
@@ -95,17 +94,12 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
     // Look through the to do list and save the to do item fields
     // in the table model.  The table model will see the changes
     // and cause the table to repaint with the new data
-    
-    
-    SimpleDateFormat format = new SimpleDateFormat("EEE MM/dd");
-    
     for (int i=0; i<size; i++) {
-        
       ToDoItem item = (ToDoItem)(list.get(i));
       tableModel.setValueAt(item.getId(), i, ID_FIELD);
       tableModel.setValueAt(item.isDone(), i, DONE_FIELD);
-      tableModel.setValueAt(item.getDescription(), i, DESCRIPTION_FIELD);      
-      tableModel.setValueAt(format.format(item.getDate()), i, DATE_FIELD);
+      tableModel.setValueAt(item.getDescription(), i, DESCRIPTION_FIELD);
+      tableModel.setValueAt(item.getDate(), i, DATE_FIELD);
     }
 }
   
