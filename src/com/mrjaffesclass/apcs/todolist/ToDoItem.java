@@ -1,5 +1,6 @@
 package com.mrjaffesclass.apcs.todolist;
-import java.util.Date;
+import java.util.*;
+import java.text.*;
 
 /**
  * To do item
@@ -18,7 +19,7 @@ public class ToDoItem {
   private String description;
   private boolean done;
   private Date date;
-  
+  private String formattedDate;
   /**
    * Constructor with done set to false in constructor
    * @param _id           ID number of to do item
@@ -124,8 +125,20 @@ public class ToDoItem {
    * @param  date value to set
    */
   public void setDate(Date date) {
-    this.date = date;
-  }
+   this.date = date;
+      }
+  
+ public void formatDate(String fDate){
+     SimpleDateFormat format = new SimpleDateFormat("EEE MM/DD");
+     Date dday = new Date();
+     fDate = format.format(dday.getDate());
+     formattedDate = fDate;
+     
+ } 
+ 
+ public String getFormattedDate() {
+ return formattedDate;
+ }
   
   /**
    * Transfer the description and done flag of another to do item into this one

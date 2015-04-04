@@ -1,5 +1,6 @@
 package com.mrjaffesclass.apcs.todolist;
 import com.mrjaffesclass.apcs.messenger.*;
+import java.util.*;
 /**
  * 
  * To do list controller.  The controller will bootstrap the app.  "Bootstrap"
@@ -72,10 +73,11 @@ public class AppController implements MessageHandler {
       "Get gas in the car",
       "Deposit paycheck",
     };
-    
+    Date d1= new Date();
+    Boolean done = false;
     // Loop through initialData and create items to add to the appModel
     for (String description : initialData) {
-      ToDoItem item = new ToDoItem(-1, description);
+      ToDoItem item = new ToDoItem(-1, description, done, d1);
       appModel.putItem (item);
     }
   }
