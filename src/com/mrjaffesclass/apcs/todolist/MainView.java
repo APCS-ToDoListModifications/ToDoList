@@ -296,11 +296,16 @@ public class MainView extends javax.swing.JFrame implements MessageHandler {
   }//GEN-LAST:event_aboutBtnActionPerformed
 
     private void OrganizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrganizeActionPerformed
-
+        //when the sort up button is clicked; sort from the soonest deadline to the latest
+        //this is the way that actually makes sense to sort tasks
+        messenger.notify("sortUp");
     }//GEN-LAST:event_OrganizeActionPerformed
 
     private void Organize2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Organize2ActionPerformed
         // TODO add your handling code here:
+        //when the sort down button is clicked; sort from latest deatline to newest deadline
+        //even though this makes no sense; attack priorities first man
+        messenger.notify("sortDown");
     }//GEN-LAST:event_Organize2ActionPerformed
 
   /**
