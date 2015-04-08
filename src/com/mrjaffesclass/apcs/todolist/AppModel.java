@@ -110,7 +110,7 @@ public class AppModel implements MessageHandler {
         removeCompletedItems();
         messenger.notify("saved");
         messenger.notify("items", this.getItems());
-        break;      
+              
     }
   }
 
