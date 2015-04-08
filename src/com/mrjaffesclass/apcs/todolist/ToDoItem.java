@@ -81,7 +81,7 @@ public class ToDoItem {
     done = _done;     // Default to not completed
   }
      
-  private Date calcDate(String _input)
+  public Date calcDate(String _input)
   {
       Date tempDate = null;
       try {
