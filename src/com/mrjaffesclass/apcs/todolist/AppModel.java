@@ -85,8 +85,15 @@ public class AppModel implements MessageHandler {
         messenger.notify("saved", null, true);
         messenger.notify("items", this.getItems(), true);
         break;
-        
       
+// We've been told to remove all items that have their 'done' flag
+      // set.  Do it, then send a confirmation message, then send the
+      // updated to do list to others
+      case "removeCompletedItems":
+        removeCompletedItems();
+        messenger.notify("saved");
+        messenger.notify("items", this.getItems());    
+        break;
          
       case "sortUp":
           //do something with the sort method?
@@ -102,15 +109,7 @@ public class AppModel implements MessageHandler {
            sortByDate(false);
         messenger.notify("saved", null, true);
         messenger.notify("items", this.getItems(), true);
-          break;
-  // We've been told to remove all items that have their 'done' flag
-      // set.  Do it, then send a confirmation message, then send the
-      // updated to do list to others
-      case "removeCompletedItems":
-        removeCompletedItems();
-        messenger.notify("saved");
-        messenger.notify("items", this.getItems());
-              
+          break;             
     }
   }
 

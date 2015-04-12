@@ -1,12 +1,8 @@
 package com.mrjaffesclass.apcs.todolist;
 
-import java.text.Format;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.text.*;
+import java.util.*;
+
 
 /**
  * To do item
@@ -37,7 +33,7 @@ public class ToDoItem {
   public ToDoItem(int _id, String _description) {
     description = _description;
     id = _id;
-    date = cal.getTime();
+    date = rDate();
     done = false;     // Default to not completed
   }
  
@@ -64,7 +60,7 @@ public class ToDoItem {
   public ToDoItem(int _id, String _description, boolean _done, String _date) {
     description = _description;
     id = _id;
-    date = cal.getTime();
+    date = rDate();
     done = _done;     // Default to not completed
   }
 
@@ -77,7 +73,7 @@ public class ToDoItem {
   public ToDoItem(int _id, String _description, boolean _done) {
     description = _description;
     id = _id;
-    date = cal.getTime();
+    date = rDate();
     done = _done;     // Default to not completed
   }
      
@@ -88,9 +84,29 @@ public class ToDoItem {
           tempDate  = format.parse(_input);
       } catch (ParseException ex) 
       {
+       tempDate =  rDate();
       }
       return tempDate ;
-  }
+  } 
+  
+    public Date rDate(){
+        SimpleDateFormat format = new SimpleDateFormat("M/d");
+        GregorianCalendar gc = new GregorianCalendar();
+        int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
+        gc.set(gc.DAY_OF_YEAR, dayOfYear);       
+        String randDate = gc.get(gc.MONTH)+ "/" + gc.get(gc.DAY_OF_MONTH);
+        Date randomDate = null;
+        try {
+          randomDate  = format.parse(randDate);
+        } catch (ParseException ex) 
+        {
+        }
+        return randomDate;
+    }
+    
+  public int randBetween(int start, int end) {
+        return start + (int)Math.round(Math.random() * (end - start));
+    }
   
   public String getDate()
   {
