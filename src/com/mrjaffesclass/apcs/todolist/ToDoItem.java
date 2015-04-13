@@ -184,7 +184,8 @@ public class ToDoItem {
    */
   public void merge(ToDoItem anotherItem) {
     this.setDescription(anotherItem.getDescription());
-    this.setDone(anotherItem.isDone());    
+    this.setDone(anotherItem.isDone()); 
+    this.setDate(anotherItem.getDate());
   }
 
 }
